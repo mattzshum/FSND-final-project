@@ -2,13 +2,16 @@ import os
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
 import json
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-database_filename = 'database.db'
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = 'sqlite:///{}'.format(os.path.join(project_dir, database_filename))
+# database_filename = 'database.db'
+# project_dir = os.path.dirname(os.path.abspath(__file__))
+# database_path = 'sqlite:///{}'.format(os.path.join(project_dir, database_filename))
+
+database_name = "fsnd-cap-movie-actor"
+database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 
 db = SQLAlchemy()
 
@@ -68,12 +71,14 @@ class Movie(db.Model):
     year = Column(Integer(), nullable=False)
     month = Column(Integer())
     day = Column(Integer())
+    genre = Column(String(50), nullable=False)
 
-    def __init__(title, year, month, day):
+    def __init__(title, year, month, day, genre):
         self.title = title
         self.year = year
         self.month = month
         self.day = day
+        self.genre = genre
     
     def insert(self):
         db.session.add(self)
@@ -92,5 +97,6 @@ class Movie(db.Model):
             'title':self.title,
             'year':self.year,
             'month':self.month,
-            'day':self.day
+            'day':self.day,
+            'genre':self.genre
         }

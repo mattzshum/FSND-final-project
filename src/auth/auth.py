@@ -7,7 +7,7 @@ from jose import jwt
 
 AUTH0_DOMAIN = 'mattcshum-dev.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'coffee-shop'
+API_AUDIENCE = 'fsnd-cap-movie-actor'
 
 
 class AuthError(Exception):
