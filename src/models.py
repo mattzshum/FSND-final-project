@@ -10,8 +10,12 @@ import json
 # project_dir = os.path.dirname(os.path.abspath(__file__))
 # database_path = 'sqlite:///{}'.format(os.path.join(project_dir, database_filename))
 
+dialect = 'postgresql'
+username = 'postgres'
+password='8949'
+host = 'localhost:5434'
 database_name = "fsnd-cap-movie-actor"
-database_path = "postgres://{}/{}".format('localhost:5432', database_name)
+database_path = f'{dialect}://{username}:{password}@{host}/{database_name}'
 
 db = SQLAlchemy()
 
