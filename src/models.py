@@ -13,7 +13,7 @@ import json
 dialect = 'postgresql'
 username = 'postgres'
 password='8949'
-host = 'localhost:5434'
+host = 'localhost:5432'
 database_name = "fsnd-cap-movie-actor"
 '''
 dialect = 'postgres'
