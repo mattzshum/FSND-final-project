@@ -10,12 +10,27 @@ import json
 # project_dir = os.path.dirname(os.path.abspath(__file__))
 # database_path = 'sqlite:///{}'.format(os.path.join(project_dir, database_filename))
 
+'''
+-----
+local setup
+-----
 dialect = 'postgresql'
 username = 'postgres'
 password='8949'
 host = 'localhost:5434'
 database_name = "fsnd-cap-movie-actor"
+'''
+
+dialect = 'postgres'
+username = 'dahqvdhpwnnkgg'
+password = 'f6cca7d58062a13f562ec3dd60cc66ceefcac394c6a960ef43458af22a0e19c1'
+host = 'ec2-34-195-169-25.compute-1.amazonaws.com:5432'
+database_name = 'dd2r1l6l7bnu4d'
+
 database_path = f'{dialect}://{username}:{password}@{host}/{database_name}'
+'''
+postgresql://postgres:8949@localhost:5434/fsnd-cap-movie-actor
+'''
 
 db = SQLAlchemy()
 
