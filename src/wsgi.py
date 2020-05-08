@@ -1,4 +1,4 @@
-from api import APP
+from src.api import APP
 
 if __name__ == '__main__':
   APP.run()
