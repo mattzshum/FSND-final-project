@@ -81,12 +81,14 @@ def verify_decode_jwt(token):
     except jwt.JWTError:
         raise AuthError({
             'code': 'invalid_header',
-            'description': 'Invalid header. Use an RS256 signed JWT Access Token'
+            'description': '''Invalid header.
+                            Use an RS256 signed JWT Access Token'''
         }, 401)
     if unverified_header['alg'] == 'HS256':
         raise AuthError({
             'code': 'invalid_header',
-            'description': 'Invalid header. Use an RS256 signed JWT Access Token'
+            'description': '''Invalid header.
+                              Use an RS256 signed JWT Access Token'''
         }, 401)
     rsa_key = {}
     for key in jwks['keys']:
@@ -115,7 +117,8 @@ def verify_decode_jwt(token):
         except jwt.JWTClaimsError:
             raise AuthError({
                 'code': 'invalid_claims',
-                'description': 'Incorrect claims, please check the audience and issuer.'
+                'description': '''Incorrect claims.
+                                  Please check the audience and issuer.'''
             }, 401)
         except Exception:
             raise AuthError({
@@ -142,7 +145,7 @@ def requires_auth(permission=''):
         def wrapper(*args, **kwargs):
             """
             This function validates and checks permission from the JWT
-            It throws an AuthError exception if permission do not match or the JWT is invalid
+            Throws an AuthError exception if permission no match/JWT invalid
             :return: f: Wrapped function with decoded JWT payload
             """
             token = get_token_auth_header()

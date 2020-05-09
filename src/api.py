@@ -4,8 +4,8 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS
 
-from .models import setup_db, Actor, Movie
-from .auth.auth import AuthError, requires_auth
+from models import setup_db, Actor, Movie
+from auth.auth import AuthError, requires_auth
 
 
 def create_app(test_config=None):
@@ -43,9 +43,9 @@ def create_app(test_config=None):
                     'success': True,
                     'actors': return_actors
                 }), 200
-            except:
+            except Exception as E:
                 abort(422)
-        except:
+        except Exception as E:
             abort(500)
 
     @app.route('/actors', methods=['POST'])
@@ -71,7 +71,7 @@ def create_app(test_config=None):
                 'success': True,
                 'actor': new_actor
             }), 200
-        except:
+        except Exception as E:
             abort(422)
 
     @app.route('/actors/<int:actor_id>', methods=['PATCH'])
@@ -106,7 +106,7 @@ def create_app(test_config=None):
                 'success': True,
                 'actor': new_actor
             }), 200
-        except:
+        except Exception as E:
             abort(422)
 
     @app.route('/actors/<int:actor_id>', methods=['DELETE'])
@@ -147,9 +147,9 @@ def create_app(test_config=None):
                     'success': True,
                     'movies': return_movies
                 })
-            except:
+            except Exception as E:
                 abort(422)
-        except:
+        except Exception as E:
             abort(500)
 
     @app.route('/movies', methods=['POST'])
@@ -182,7 +182,7 @@ def create_app(test_config=None):
                 'success': True,
                 'movie': new_movie
             }), 200
-        except:
+        except Exception as E:
             abort(422)
 
     @app.route('/movies/<int:movie_id>', methods=['{PATCH'])
@@ -218,7 +218,7 @@ def create_app(test_config=None):
                 'success': True,
                 'movie': new_movie
             }), 200
-        except:
+        except Exception as E:
             abort(422)
 
     @app.route('/movies/<int:movie_id>', methods=['DELETE'])
